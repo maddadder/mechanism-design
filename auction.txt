@@ -1,0 +1,36 @@
+A dominant-strategy incentive-compatible (DSIC) auction
+
+Management R provides a pair (or more) of compatible buyers B
+ - compatible meaning two independent buyers desire the same type of %product%
+
+We are going to do a 2nd price auction using Myerson's Lemma
+
+let t be a member of B
+let u be a member of B
+
+let the sales department provide products P and begin interacting with B
+
+let p be a member of P
+
+t is paired with p
+u is paired with p
+
+For simplicity, let's say t and u are bidding for the same p, although not required
+
+Rules:
+1. Prices must increase by a factor of $10.00
+2. You must auction off p
+3. In order for a bid to be valid it must be ever increasing (monotone)
+4. Winner takes all
+
+Questions:
+Why would we turn down business from the losing bidder?
+ - The buyer's intrinsic value was lower for that product
+
+Relaxations:
+1. Managment may turn down low bidders if too busy
+2. For high value buyers, don't bother using an auction
+3. If you trust their bid there is no need to auction
+
+Statement:
+Some bidders will just go with the flow because we are trusted and given our setup there is no resistance. In other words, when we play faily, others will too.
