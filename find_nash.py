@@ -49,6 +49,10 @@ B = np.array([[3, 5], [0, 1]])
 A = np.array([[4, 6], [2, 0]])
 B = np.array([[2, -1], [3, 0]])
 
+# For the Hawk Dove Game
+#A = np.array([[0, 1], [3, 2]])
+#B = np.array([[0, 3], [1, 2]])
+
 
 index, scores, max_utility = find_nash(A,B)
-print(index, scores, max_utility)
+print('index, scores, max_utility', index, scores, max_utility)

@@ -15,6 +15,9 @@ B = np.array([[1, 0, 0], [0, 2, 0], [-1, -1, -2]])
 A = np.array([[4, 6], [2, 0]])
 B = np.array([[2, -1], [3, 0]])
 
+# For the Hawk Dove Game
+#A = np.array([[0, 1], [3, 2]])
+#B = np.array([[0, 3], [1, 2]])
 
 game = nash.Game(A,B)
 
