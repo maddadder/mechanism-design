@@ -11,9 +11,10 @@ B = np.array([[1, 0, 0], [0, 2, 0], [-1, -1, -2]])
 #A = np.array([[3, 0], [5, 1]])
 #B = np.array([[3, 5], [0, 1]])
 
-# Cournot duopoly
-A = np.array([[3, 0], [5, 1]])
-B = np.array([[3, 5], [0, 1]])
+# For the Pigs Game
+A = np.array([[4, 6], [2, 0]])
+B = np.array([[2, -1], [3, 0]])
+
 
 game = nash.Game(A,B)
 
