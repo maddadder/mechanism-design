@@ -1,0 +1,18 @@
+
+# prisoner's delimma
+3,3 0,5
+5,0 1,1
+^
+P1 search iteration goes: 
+3
+5 <-- max (index 1)
+
+0
+1 <-- max (index 1)
+
+P2 search iteration goes: 
+3 <-- max (index 0), but not available because other member has a 5 here
+0 <-- must choose this one instead per P1 index 1
+5 <-- max (index 0), but not available because other member has a 5 here
+1 <-- must choose this one instead per P1 index 1
+ ^ P1 says if P2 chooses index 1, then I choose best of index 1

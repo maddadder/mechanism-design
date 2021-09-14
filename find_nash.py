@@ -2,57 +2,61 @@ import nashpy as nash
 
 import numpy as np
 import random
+P1 = 0
+P2 = 1
 
 '''
 _i, _j represent opponents actions 
 '''
-def find_best_response_given_i_j(A, B, _i, _j):
-    max_utility = 0
-    i = 0
-    selected_i = 0
-    selected_j = 0
-    for i in range(len(B)):
-        for j in range(len(B[i])):
-            if (i == _i and j == _j) or (_i == None and _j == None):
-                current_utility = B[i][j]
-                if current_utility > max_utility:
-                    max_utility = current_utility
-                    selected_i = i
-                    selected_j = j
-    return max_utility, selected_i, selected_j
+def generate_labels(labels_num):
+    return list(range(labels_num))
 
-def find_nash(A, B):
-    index = []
-    scores = []
-    print('row_player\r\n',A)
-    print('column_player\r\n',B)
-    global_best_response, __i, __j = find_best_response_given_i_j(A, B, None, None)
-    i = 0
-    for i in range(len(A)):
-        for j in range(len(A[i])):
-            max_utility, _i, _j = find_best_response_given_i_j(A, B, i, j)
-            if max_utility >= A[i][j]:
-                max_utility = A[i][j]
-                index = np.array([i,j]), np.array([_i,_j])
-                scores = np.array([A[i][j], max_utility])
-    return index, scores, max_utility
+def generate_payout_grid(file):
+    payout_grid = []
+    for line in file:
+        row_array = []
+        for payouts in line.split(" "):
+            row_array.append([int(payout) for payout in payouts.split(",")])
+        payout_grid.append(row_array)
+    return payout_grid
 
-# battle of the sexes
-A = np.array([[2, 0, -1], [0, 1, -1], [0, 0, -2]])
-B = np.array([[1, 0, 0], [0, 2, 0], [-1, -1, -2]])
+def compute_pure_strategies(payout_grid):
+    equilibriums = pure_strategy_solutions(payout_grid)
+    for s in equilibriums:
+        print("Player 1 plays", s[P1], "and Player 2 plays", s[P2])
+        print("Player 1 score", payout_grid[P2][s[P1]][P1], "and Player 2 score", payout_grid[s[P2]][P2][P2])
+    if len(equilibriums) == 0:
+        print("No pure strategies")
 
-# prisoner's delimma
-A = np.array([[3, 0], [5, 1]])
-B = np.array([[3, 5], [0, 1]])
+def pure_strategy_solutions(payout_grid):
+    best_payouts = {}
+    row_num = len(payout_grid)
+    col_num = len(payout_grid[0])
+    # column then row
+    for c in range(col_num):
+        max_payout = max([payout_grid[r][c][P1] for r in range(row_num)])
+        for r in range(row_num):
+            if payout_grid[r][c][P1] == max_payout:
+                best_payouts[(r, c)] = (r, c)
 
-# For the Pigs Game
-A = np.array([[4, 6], [2, 0]])
-B = np.array([[2, -1], [3, 0]])
+    best_payout_labels = []
+    # row then column
+    for r in range(row_num):
+        max_payout = max([payout_grid[r][c][P2] for c in range(col_num)])
+        for c in range(col_num):
+            if payout_grid[r][c][P2] == max_payout:
+                if (r, c) in best_payouts:
+                    best_payout_labels.append(best_payouts[(r, c)])
+    return best_payout_labels
 
-# For the Hawk Dove Game
-#A = np.array([[0, 1], [3, 2]])
-#B = np.array([[0, 3], [1, 2]])
+fileName = "games/prisonersDelimma.txt"
+#fileName = "games/PigsGame.txt"
+#fileName = "games/HawkDoveGame.txt"
+file = open(fileName, "r")
+payout_grid = generate_payout_grid(file)
+row_labels = generate_labels(len(payout_grid))
+col_labels = generate_labels(len(payout_grid[0]))
+file.close()
 
+compute_pure_strategies(payout_grid)
 
-index, scores, max_utility = find_nash(A,B)
-print('index, scores, max_utility', index, scores, max_utility)
