@@ -49,9 +49,9 @@ def pure_strategy_solutions(payout_grid):
                     best_payout_labels.append(best_payouts[(r, c)])
     return best_payout_labels
 
-fileName = "games/prisonersDelimma.txt"
+#fileName = "games/prisonersDelimma.txt"
 #fileName = "games/PigsGame.txt"
-#fileName = "games/HawkDoveGame.txt"
+fileName = "games/HawkDoveGame.txt"
 file = open(fileName, "r")
 payout_grid = generate_payout_grid(file)
 row_labels = generate_labels(len(payout_grid))
