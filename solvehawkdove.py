@@ -5,15 +5,15 @@ def f1(x):
 def f2(x):
     return x*(3/2)
 
-steps = 1000000
+steps = 101
 min = 0
-max = 10
+max = 1
 solution = 0
 for xi in np.linspace(min,max,steps):
     _f1 = f1(xi)
     _f2 = f2(xi)
-    if round(_f1,5) == round(_f2,5):
-        solution = round(xi,1)
+    if _f1 <= _f2:
+        solution = xi
         break
-if f1(solution) == f2(solution):
-    print('solution:',solution," found")
+
+print('solution:',solution," found")
