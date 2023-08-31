@@ -1,36 +1,31 @@
-A dominant-strategy incentive-compatible (DSIC) auction
+Program Description: Dominant-Strategy Incentive-Compatible Auction Simulation
 
-Management R provides a pair (or more) of compatible buyers B
- - compatible meaning two independent buyers desire the same type of %product%
+This program simulates a dominant-strategy incentive-compatible (DSIC) auction using Myerson's Lemma. The auction involves management R providing a pair (or more) of compatible buyers B, where compatibility signifies that two independent buyers desire the same type of product.
 
-We are going to do a 2nd price auction using Myerson's Lemma
+The auction employs a second-price auction mechanism based on Myerson's Lemma. Here's how the simulation works:
 
-let t be a member of B
-let u be a member of B
+    Management R selects two compatible buyers, t and u, from B.
+    The sales department introduces a set of products P and initiates interactions with the buyers.
+    For simplicity, let's consider that buyers t and u are bidding for the same product p, although this is not a strict requirement.
+    The auction follows these rules:
+        Prices for bids must increase by a fixed factor of $5.00.
+        Product p must be auctioned off.
+        Bids must be monotonically increasing to be considered valid.
+        The highest valid bid wins the auction.
+        The winner only has to pay the second highest valid bid (second-price auction).
+        In the case of multiple rounds, if the opponent submits the highest valid bid, they win.
 
-let the sales department provide products P and begin interacting with B
+Furthermore, the program considers the following aspects:
 
-let p be a member of P
+Why Turn Down Business from the Losing Bidder?
 
-t is paired with p
-u is paired with p
-
-For simplicity, let's say t and u are bidding for the same p, although not required
-
-Rules:
-1. Prices must increase by a factor of $10.00
-2. You must auction off p
-3. In order for a bid to be valid it must be ever increasing (monotone)
-4. Winner takes all
-
-Questions:
-Why would we turn down business from the losing bidder?
- - The buyer's intrinsic value was lower for that product
+    Business may be turned down from the losing bidder if their intrinsic value for the product is lower. This decision aligns with the goal of maximizing revenue.
 
 Relaxations:
-1. Managment may turn down low bidders if too busy
-2. For high value buyers, don't bother using an auction
-3. If you trust their bid there is no need to auction
+
+    Management has the option to reject low bids if they are too busy or if the bids are below a certain threshold.
+    For high-value buyers, using an auction might not be necessary; a direct sale could be pursued.
+    Trustworthy bids might not require an auction and can be accepted as-is.
 
 Statement:
-Some bidders will just go with the flow because we are trusted and given our setup there is no resistance. In other words, when we play faily, others will too.
+The program acknowledges that some bidders may conform due to existing trust and familiarity. In this setup, resistance to the auction is minimal, and participants may follow similar strategies as others due to the established norms.
